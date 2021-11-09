@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deploynuevo-alext-pyxis
-  namespace: <namespace>
+  namespace: default
   labels:
      app: deploynuevo-alext-pyxis
 spec:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: deploynuevo-alext-pyxis
-        image: us.icr.io/<namespace>/<image>:<tag>
+        image: us.icr.io/default/<image>:<tag>
         ports:
           - containerPort: 8080
 ---
@@ -25,7 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: servicenuevo-alext-pyxis
-  namespace: <namespace>
+  namespace: default
 spec:
   type: ClusterIP
   selector:
@@ -37,8 +37,8 @@ spec:
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-    name: <route_name>
-    namespace: <namespace>
+    name: route-pyxis-alext-envars
+    namespace: default
 spec:
     to:
         kind: Service
